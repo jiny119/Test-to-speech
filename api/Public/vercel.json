@@ -1,9 +1,19 @@
 {
     "builds": [
-        { "src": "api/tts.py", "use": "@vercel/python" }
+        { 
+            "src": "api/tts.py", 
+            "use": "@vercel/python" 
+        }
     ],
     "routes": [
-        { "src": "/api/tts", "dest": "/api/tts.py" },
-        { "src": "/(.*)", "dest": "/index.html" }
+        { 
+            "src": "/api/tts", 
+            "dest": "/api/tts.py", 
+            "methods": ["POST", "OPTIONS"] 
+        },
+        { 
+            "src": "/(.*)", 
+            "dest": "/index.html" 
+        }
     ]
 }
