@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>اردو TTS</title>
+</head>
+<body>
+    <textarea id="text"></textarea>
+    <button onclick="generate()">آواز بنائیں</button>
+    <audio id="audio" controls></audio>
+
+    <script>
+        async function generate() {
+            const text = document.getElementById("text").value;
+            const response = await fetch("/api/tts", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text }),
+            });
+            const audioUrl = URL.createObjectURL(await response.blob());
+            document.getElementById("audio").src = audioUrl;
+        }
+    </script>
+</body>
+</html>
